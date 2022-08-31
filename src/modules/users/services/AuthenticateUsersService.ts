@@ -52,7 +52,7 @@ class AuthenticateUsersService {
       throw new AppError(AppErrorType.sessions.invalidCredentials);
     }
 
-    const { expiresIn, secret } = authConfig.jwts;
+    const { expiresIn, secret } = authConfig.jwt;
 
     const token = sign(
       {
