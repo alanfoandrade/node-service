@@ -31,7 +31,7 @@ export default {
     },
   },
 
-  driver: process.env.STORAGE_DRIVER,
+  driver: process.env.STORAGE_DRIVER || 'disk',
 
   multer: {
     storage: multer.diskStorage({
