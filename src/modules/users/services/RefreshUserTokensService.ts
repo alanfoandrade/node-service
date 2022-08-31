@@ -45,7 +45,7 @@ class RefreshUserTokensService {
       throw new AppError(AppErrorType.sessions.invalidRefreshToken);
     }
 
-    const { expiresIn, secret } = authConfig.jwts;
+    const { expiresIn, secret } = authConfig.jwt;
 
     const token = sign({}, secret, {
       expiresIn,
