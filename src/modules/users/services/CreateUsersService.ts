@@ -13,7 +13,6 @@ interface ICreateUsersServiceDTO {
   email: string;
   name: string;
   phone?: string;
-  ventureId?: string;
 }
 
 @injectable()
@@ -32,7 +31,6 @@ class CreateUsersService {
     email,
     name,
     phone,
-    ventureId,
   }: ICreateUsersServiceDTO): Promise<User> {
     const existingUsers = await this.usersRepository.checkExistingUsers({
       cpf,
@@ -55,11 +53,9 @@ class CreateUsersService {
       bio,
       cpf,
       email,
-      featureGroupId: 'lorem_id',
       name,
       password: hashedPassword,
       phone,
-      ventureId,
     };
 
     const user = await this.usersRepository.create(userPayload);

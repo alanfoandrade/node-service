@@ -2,11 +2,10 @@ import ICheckExistingUsersDTO from '@modules/users/dtos/ICheckExistingUsersDTO';
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 import IListUserDTO from '@modules/users/dtos/IListUserDTO';
 import IListUserResponseDTO from '@modules/users/dtos/IListUserResponseDTO';
-import IListUsersByCpfOrEmailDTO from '@modules/users/dtos/IListUsersByCpfOrEmailDTO';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { Repository, ILike, FindOptionsWhere } from 'typeorm';
 
-import { dataSource } from '@shared/infra/typeorm';
+import dataSource from '@shared/infra/typeorm';
 
 import User from '../entities/User';
 
@@ -54,8 +53,6 @@ class UsersRepository implements IUsersRepository {
   }: IListUserDTO): Promise<IListUserResponseDTO> {
     const usersQuery = this.ormRepository
       .createQueryBuilder('users')
-      .leftJoinAndSelect('users.venture', 'venture')
-      .leftJoinAndSelect('users.featureGroup', 'featureGroup')
       .skip(skip)
       .take(take);
 
@@ -96,7 +93,6 @@ class UsersRepository implements IUsersRepository {
     };
 
     const user = await this.ormRepository.findOne({
-      relations: ['featureGroup', 'featureGroup.features', 'venture'],
       where,
     });
 
@@ -107,37 +103,6 @@ class UsersRepository implements IUsersRepository {
     const user = await this.ormRepository.findOne({ where: { id: userId } });
 
     return user;
-  }
-
-  public async findByIdDetailed(userId: string): Promise<User | null> {
-    const userQuery = this.ormRepository
-      .createQueryBuilder('users')
-      .leftJoinAndSelect('users.bookings', 'bookings')
-      .leftJoinAndSelect('bookings.activitySchedule', 'activitySchedule')
-      .leftJoinAndSelect('activitySchedule.activity', 'activity')
-      .leftJoinAndSelect('activity.spot', 'spot')
-      .leftJoinAndSelect('users.guests', 'guests')
-      .leftJoinAndSelect('users.host', 'host')
-      .leftJoinAndSelect('users.venture', 'venture')
-      .leftJoinAndSelect('users.featureGroup', 'featureGroup')
-      .leftJoinAndSelect('featureGroup.features', 'features')
-      .orderBy('bookings.bookedDate', 'ASC')
-      .where({ id: userId });
-
-    const user = await userQuery.getOne();
-
-    return user;
-  }
-
-  public async listByCpfOrEmail({
-    cpf,
-    email,
-  }: IListUsersByCpfOrEmailDTO): Promise<User[]> {
-    const users = await this.ormRepository.find({
-      where: [{ cpf }, { email }],
-    });
-
-    return users;
   }
 
   public async save(user: User): Promise<User> {

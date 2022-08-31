@@ -57,41 +57,11 @@ class FakeUsersRepository implements IUsersRepository {
   public async findByEmail(email: string): Promise<User | null> {
     const findUser = this.users.find((user) => user.email === email);
 
-    if (findUser) {
-      Object.assign(findUser, {
-        featureGroup: {
-          features: [
-            { key: 'USER_FULL_ACCESS', name: 'Usuários controle total' },
-          ],
-          key: 'ADMIN',
-          name: 'Administrador',
-        },
-      });
-    }
-
     return findUser || null;
   }
 
   public async findById(userId: string): Promise<User | null> {
     const findUser = this.users.find((user) => user.id === userId);
-
-    return findUser || null;
-  }
-
-  public async findByIdDetailed(userId: string): Promise<User | null> {
-    const findUser = this.users.find((user) => user.id === userId);
-
-    if (findUser) {
-      Object.assign(findUser, {
-        featureGroup: {
-          features: [
-            { key: 'USER_FULL_ACCESS', name: 'Usuários controle total' },
-          ],
-          key: 'ADMIN',
-          name: 'Administrador',
-        },
-      });
-    }
 
     return findUser || null;
   }

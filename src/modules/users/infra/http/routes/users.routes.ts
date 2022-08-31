@@ -4,7 +4,6 @@ import { Router } from 'express';
 import UsersController from '../controllers/UsersController';
 import UsersProfileController from '../controllers/UsersProfileController';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
-import ensureAuthorized from '../middlewares/ensureAuthorized';
 
 const usersRouter = Router();
 const usersController = new UsersController();
@@ -30,7 +29,6 @@ usersRouter.get(
       sort: Joi.string().valid('cpf', 'name', 'email', 'phone', 'createdAt'),
     }),
   }),
-  ensureAuthorized(['USER_FULL_ACCESS', 'USER_READ_ACCESS']),
   usersController.index,
 );
 
@@ -45,7 +43,6 @@ usersRouter.get(
       user_id: Joi.string().uuid().required(),
     }),
   }),
-  ensureAuthorized(['USER_FULL_ACCESS', 'USER_READ_ACCESS']),
   usersController.show,
 );
 
@@ -64,7 +61,6 @@ usersRouter.post(
       phone: Joi.string().allow(null),
     }),
   }),
-  ensureAuthorized(['USER_FULL_ACCESS', 'USER_WRITE_ACCESS']),
   usersController.create,
 );
 
@@ -85,7 +81,6 @@ usersRouter.put(
       phone: Joi.string().allow(null),
     }),
   }),
-  ensureAuthorized(['USER_FULL_ACCESS', 'USER_PROFILE_WRITE_ACCESS']),
   usersProfileController.update,
 );
 
@@ -107,7 +102,6 @@ usersRouter.put(
       phone: Joi.string().allow(null),
     }),
   }),
-  ensureAuthorized(['USER_FULL_ACCESS', 'USER_WRITE_ACCESS']),
   usersController.update,
 );
 
@@ -122,7 +116,6 @@ usersRouter.delete(
       user_id: Joi.string().uuid().required(),
     }),
   }),
-  ensureAuthorized(['USER_FULL_ACCESS', 'USER_DELETE_ACCESS']),
   usersController.destroy,
 );
 

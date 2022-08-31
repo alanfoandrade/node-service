@@ -22,7 +22,6 @@ describe('UpdateUserAvatars', () => {
     const user = await fakeUsersRepository.create({
       cpf: '01234567654321',
       email: 'testmail@user.com',
-      featureGroupId: 'feature_group_id',
       name: 'Test User',
       password: '123123123',
     });
@@ -50,7 +49,6 @@ describe('UpdateUserAvatars', () => {
     const user = await fakeUsersRepository.create({
       cpf: '01234567654321',
       email: 'testmail@user.com',
-      featureGroupId: 'feature_group_id',
       name: 'Test User',
       password: '123123123',
     });

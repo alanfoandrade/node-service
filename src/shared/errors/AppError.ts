@@ -8,8 +8,6 @@ export const AppErrorType = {
     insufficientPrivilege: 'insufficient-privilege',
     invalidCredentials: 'invalid-credentials',
     invalidRefreshToken: 'invalid-refresh-token',
-    missingUserFeatureGroup: 'missing-user-feature-group',
-    missingUserFeatureGroupFeatures: 'missing-user-feature-group-features',
     tokenNotFound: 'token-not-found',
   },
   users: {

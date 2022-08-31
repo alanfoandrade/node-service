@@ -5,7 +5,6 @@ import multer from 'multer';
 
 import UserAvatarsController from '../controllers/UserAvatarsController';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
-import ensureAuthorized from '../middlewares/ensureAuthorized';
 
 const userAvatarsRouter = Router();
 
@@ -25,7 +24,6 @@ userAvatarsRouter.patch(
       user_id: Joi.string().uuid().required(),
     }),
   }),
-  ensureAuthorized(['USER_FULL_ACCESS', 'USER_AVATAR_WRITE_ACCESS']),
   upload.single('avatar'),
   userAvatarsController.update,
 );
@@ -41,7 +39,6 @@ userAvatarsRouter.delete(
       user_id: Joi.string().uuid().required(),
     }),
   }),
-  ensureAuthorized(['USER_FULL_ACCESS', 'USER_AVATAR_DELETE_ACCESS']),
   userAvatarsController.destroy,
 );
 

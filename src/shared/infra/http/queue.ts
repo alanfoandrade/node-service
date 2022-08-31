@@ -6,11 +6,9 @@ import queueConfig from '@config/queue';
 
 import BullQueueProvider from '@shared/container/providers/QueueProvider/implementations/BullQueueProvider';
 
-import createDbConnection from '../typeorm';
+import '../typeorm';
 
 async function runQueue() {
-  await createDbConnection();
-
   const queue = new BullQueueProvider();
 
   queue.processQueue();

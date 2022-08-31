@@ -11,6 +11,5 @@ export default interface IUsersRepository {
   findAll(data: IListUserDTO): Promise<IListUserResponseDTO>;
   findByEmail(email: string): Promise<User | null>;
   findById(userId: string): Promise<User | null>;
-  findByIdDetailed(userId: string): Promise<User | null>;
   save(user: Omit<User, 'getAvatarUrl'>): Promise<User>;
 }

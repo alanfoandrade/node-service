@@ -21,16 +21,13 @@ describe('UpdateUsersProfile', () => {
     const user = await fakeUsersRepository.create({
       cpf: '01234567654321',
       email: 'testmail@user.com',
-      featureGroupId: 'feature_group_id',
       name: 'Test User',
       password: '123123123',
     });
 
     const updatedUser = await updateUsers.execute({
       authenticatedUser: {
-        featureGroup: user.featureGroup,
         id: user.id,
-        ventureId: user.ventureId,
       },
       cpf: '01234567654321',
       email: 'testmailedited2@user.com',
@@ -45,13 +42,7 @@ describe('UpdateUsersProfile', () => {
     await expect(
       updateUsers.execute({
         authenticatedUser: {
-          featureGroup: {
-            features: [],
-            key: 'lorem_key',
-            name: 'lorem_name',
-          },
           id: 'lorem_id',
-          ventureId: 'lorem_venture',
         },
         cpf: '01234567654321',
         email: 'testmailedited@user.com',
@@ -65,7 +56,6 @@ describe('UpdateUsersProfile', () => {
     await fakeUsersRepository.create({
       cpf: '01234567654321',
       email: 'testmail@user.com',
-      featureGroupId: 'feature_group_id',
       name: 'Test User',
       password: '123123123',
     });
@@ -73,7 +63,6 @@ describe('UpdateUsersProfile', () => {
     const user = await fakeUsersRepository.create({
       cpf: '01234567654321',
       email: 'testmailtobeupdated@user.com',
-      featureGroupId: 'feature_group_id',
       name: 'Test User to be Updated',
       password: '123123123',
     });
@@ -81,9 +70,7 @@ describe('UpdateUsersProfile', () => {
     await expect(
       updateUsers.execute({
         authenticatedUser: {
-          featureGroup: user.featureGroup,
           id: user.id,
-          ventureId: user.ventureId,
         },
         cpf: '01234567654321',
         email: 'testmail@user.com',
@@ -98,16 +85,13 @@ describe('UpdateUsersProfile', () => {
     const user = await fakeUsersRepository.create({
       cpf: '01234567654321',
       email: 'testmail@user.com',
-      featureGroupId: 'feature_group_id',
       name: 'Test User',
       password: '123123123',
     });
 
     const updatedUser = await updateUsers.execute({
       authenticatedUser: {
-        featureGroup: user.featureGroup,
         id: user.id,
-        ventureId: user.ventureId,
       },
       cpf: '01234567654321',
       email: 'testmailedited@user.com',

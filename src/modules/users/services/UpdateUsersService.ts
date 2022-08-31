@@ -11,12 +11,10 @@ interface IUpdateUsersServiceDTO {
   bio?: string;
   cpf: string;
   email: string;
-  featureGroupId?: string;
   name: string;
   password?: string;
   phone?: string;
   userId: string;
-  ventureId?: string;
 }
 
 @injectable()
@@ -33,12 +31,10 @@ class UpdateUsersService {
     bio,
     cpf,
     email,
-    featureGroupId,
     name,
     password,
     phone,
     userId,
-    ventureId,
   }: IUpdateUsersServiceDTO): Promise<User> {
     const user = await this.usersRepository.findById(userId);
 
@@ -70,10 +66,8 @@ class UpdateUsersService {
       bio,
       cpf,
       email,
-      featureGroupId: featureGroupId || user.featureGroupId,
       name,
       phone,
-      ventureId,
     });
 
     return plainToInstance(User, updatedUser);

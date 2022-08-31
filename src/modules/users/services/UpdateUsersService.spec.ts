@@ -18,7 +18,6 @@ describe('UpdateUsers', () => {
     const user = await fakeUsersRepository.create({
       cpf: '01234567654321',
       email: 'testmail@user.com',
-      featureGroupId: 'lorem_group',
       name: 'Test User',
       password: '123123123',
     });
@@ -26,7 +25,6 @@ describe('UpdateUsers', () => {
     const updatedUser = await updateUsers.execute({
       cpf: '01234567654321',
       email: 'testmailedited2@user.com',
-      featureGroupId: 'lorem_group',
       name: 'Test User Edited2',
       userId: user.id,
     });
@@ -40,7 +38,6 @@ describe('UpdateUsers', () => {
       updateUsers.execute({
         cpf: '01234567654321',
         email: 'testmailedited@user.com',
-        featureGroupId: 'lorem_group',
         name: 'Test User Edited',
         password: '123321',
         userId: 'non-existing-user-id',
@@ -52,7 +49,6 @@ describe('UpdateUsers', () => {
     await fakeUsersRepository.create({
       cpf: '01234567654321',
       email: 'testmail@user.com',
-      featureGroupId: 'lorem_group',
       name: 'Test User',
       password: '123123123',
     });
@@ -60,7 +56,6 @@ describe('UpdateUsers', () => {
     const user = await fakeUsersRepository.create({
       cpf: '01234567654321',
       email: 'testmailtobeupdated@user.com',
-      featureGroupId: 'lorem_group',
       name: 'Test User to be Updated',
       password: '123123123',
     });
@@ -69,7 +64,6 @@ describe('UpdateUsers', () => {
       updateUsers.execute({
         cpf: '01234567654321',
         email: 'testmail@user.com',
-        featureGroupId: 'lorem_group',
         name: 'Test User Edited',
         userId: user.id,
       }),
@@ -82,7 +76,6 @@ describe('UpdateUsers', () => {
     const user = await fakeUsersRepository.create({
       cpf: '01234567654321',
       email: 'testmail@user.com',
-      featureGroupId: 'lorem_group',
       name: 'Test User',
       password: '123123123',
     });
@@ -90,7 +83,6 @@ describe('UpdateUsers', () => {
     const updatedUser = await updateUsers.execute({
       cpf: '01234567654321',
       email: 'testmailedited@user.com',
-      featureGroupId: 'lorem_group',
       name: 'Test User Edited',
       password: '123321',
       userId: user.id,

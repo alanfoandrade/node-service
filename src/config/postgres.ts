@@ -1,6 +1,6 @@
-import { DataSourceOptions } from 'typeorm';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
-const postgresConfig: DataSourceOptions = {
+const postgresConfig: PostgresConnectionOptions = {
   database: process.env.PG_DB,
   entities: [
     process.env.NODE_ENV === 'prod'

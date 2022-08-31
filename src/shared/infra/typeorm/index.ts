@@ -1,14 +1,14 @@
-import postgresConfig from '@config/postgres';
+import 'reflect-metadata';
+import 'dotenv/config';
 import { DataSource } from 'typeorm';
 
-export const dataSource = new DataSource(postgresConfig);
+import postgresConfig from '../../../config/postgres';
 
-export default async function createDbConnection() {
-  try {
-    await dataSource.initialize();
+const dbConnection = new DataSource(postgresConfig);
 
-    console.log(`Database connected!\n Host: ${process.env.PG_HOST}`);
-  } catch (err) {
-    console.log(err);
-  }
-}
+dbConnection
+  .initialize()
+  .then(() => console.log(`Database connected!\n Host: ${process.env.PG_HOST}`))
+  .catch((err) => console.log(err));
+
+export default dbConnection;

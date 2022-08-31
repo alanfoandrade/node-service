@@ -5,11 +5,6 @@ import AppError, { AppErrorType } from '@shared/errors/AppError';
 import User from '../infra/typeorm/entities/User';
 import IUsersRepository from '../repositories/IUsersRepository';
 
-interface IShowUsersServiceDTO {
-  hostId?: string;
-  userId: string;
-}
-
 @injectable()
 class ShowUsersService {
   constructor(
@@ -17,14 +12,8 @@ class ShowUsersService {
     private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({
-    hostId,
-    userId,
-  }: IShowUsersServiceDTO): Promise<User> {
-    const user = await this.usersRepository.findByIdDetailed({
-      hostId,
-      userId,
-    });
+  public async execute(userId: string): Promise<User> {
+    const user = await this.usersRepository.findById(userId);
 
     if (!user) {
       throw new AppError(AppErrorType.users.notFound);

@@ -58,8 +58,7 @@
         "classes": {
           "memberTypes": [
             "field",
-            "constructor",
-            "method"
+            "constructor"
           ],
           "order": "alphabetically-case-insensitive"
         },

@@ -1,7 +1,7 @@
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import { Repository } from 'typeorm';
 
-import { dataSource } from '@shared/infra/typeorm';
+import dataSource from '@shared/infra/typeorm';
 
 import UserToken from '../entities/UserToken';
 

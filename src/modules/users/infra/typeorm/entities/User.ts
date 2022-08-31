@@ -25,7 +25,7 @@ class User {
   @Column('varchar')
   cpf: string;
 
-  @CreateDateColumn('timestamp with time zone')
+  @CreateDateColumn({ type: 'timestamp with time zone' })
   createdAt: Date;
 
   @Column('varchar')
@@ -49,7 +49,7 @@ class User {
   })
   tokens: UserToken[];
 
-  @UpdateDateColumn('timestamp with time zone')
+  @UpdateDateColumn({ type: 'timestamp with time zone' })
   updatedAt: Date;
 
   @Expose({ name: 'avatarUrl' })
