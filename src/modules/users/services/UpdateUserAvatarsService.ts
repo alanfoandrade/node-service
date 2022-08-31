@@ -25,9 +25,7 @@ class UpdateUserAvatarsService {
     avatarFilename,
     userId,
   }: IUpdateUserAvatarsServiceDTO): Promise<User> {
-    const user = await this.usersRepository.findByIdDetailed({
-      userId,
-    });
+    const user = await this.usersRepository.findById(userId);
 
     if (!user) {
       throw new AppError(AppErrorType.users.notFound);

@@ -31,7 +31,7 @@ class RefreshUserTokensService {
     refreshToken,
     userId,
   }: IRefreshUserTokensServiceDTO): Promise<IRefreshUserTokensServiceResponse> {
-    const user = await this.usersRepository.findByIdDetailed(userId);
+    const user = await this.usersRepository.findById(userId);
 
     if (!user) {
       throw new AppError(AppErrorType.users.notFound);

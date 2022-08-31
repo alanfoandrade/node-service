@@ -40,7 +40,7 @@ class ResetPasswordsService {
       throw new AppError(AppErrorType.sessions.expiredToken);
     }
 
-    const user = await this.usersRepository.findByIdDetailed(userToken.userId);
+    const user = await this.usersRepository.findById(userToken.userId);
 
     if (!user) {
       throw new AppError(AppErrorType.users.notFound);

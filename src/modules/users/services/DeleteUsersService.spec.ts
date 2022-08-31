@@ -25,20 +25,11 @@ describe('DeleteUsers', () => {
       password: '123123123',
     });
 
-    await deleteUsers.execute({
-      authenticatedUser: {
-        id: user.id,
-      },
-      userId: user.id,
-    });
+    await deleteUsers.execute(user.id);
 
-    await expect(
-      deleteUsers.execute({
-        authenticatedUser: {
-          id: user.id,
-        },
-        userId: user.id,
-      }),
-    ).rejects.toHaveProperty('appErrorType', 'user-not-found');
+    await expect(deleteUsers.execute(user.id)).rejects.toHaveProperty(
+      'appErrorType',
+      'user-not-found',
+    );
   });
 });

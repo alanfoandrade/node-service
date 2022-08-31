@@ -28,12 +28,11 @@ export default class UsersController {
     request: Request,
     response: Response,
   ): Promise<Response> {
-    const authenticatedUser = request.user;
     const { user_id: userId } = request.params;
 
     const deleteUser = container.resolve(DeleteUsersService);
 
-    await deleteUser.execute({ authenticatedUser, userId });
+    await deleteUser.execute(userId);
 
     return response.json();
   }
@@ -62,9 +61,7 @@ export default class UsersController {
 
     const showUser = container.resolve(ShowUsersService);
 
-    const user = await showUser.execute({
-      userId,
-    });
+    const user = await showUser.execute(userId);
 
     return response.json(instanceToPlain(user));
   }

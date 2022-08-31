@@ -6,10 +6,6 @@ import AppError, { AppErrorType } from '@shared/errors/AppError';
 import User from '../infra/typeorm/entities/User';
 import IUsersRepository from '../repositories/IUsersRepository';
 
-interface IDeleteUserAvatarServiceDTO {
-  userId: string;
-}
-
 @injectable()
 class DeleteUserAvatarService {
   constructor(
@@ -20,10 +16,8 @@ class DeleteUserAvatarService {
     private storageProvider: IStorageProvider,
   ) {}
 
-  public async execute({ userId }: IDeleteUserAvatarServiceDTO): Promise<User> {
-    const user = await this.usersRepository.findByIdDetailed({
-      userId,
-    });
+  public async execute(userId: string): Promise<User> {
+    const user = await this.usersRepository.findById(userId);
 
     if (!user) {
       throw new AppError(AppErrorType.users.notFound);

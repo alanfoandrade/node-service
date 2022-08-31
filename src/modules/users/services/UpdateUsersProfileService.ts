@@ -36,9 +36,7 @@ class UpdateUsersProfileService {
     phone,
     ...rest
   }: IUpdateUsersProfileServiceDTO): Promise<User> {
-    const user = await this.usersRepository.findByIdDetailed({
-      userId: authenticatedUser.id,
-    });
+    const user = await this.usersRepository.findById(authenticatedUser.id);
 
     if (!user) {
       throw new AppError(AppErrorType.users.notFound);

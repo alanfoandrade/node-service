@@ -15,7 +15,7 @@ export default class UserAvatarsController {
 
     const deleteUserAvatar = container.resolve(DeleteUserAvatarService);
 
-    await deleteUserAvatar.execute({ userId });
+    await deleteUserAvatar.execute(userId);
 
     return response.json();
   }
