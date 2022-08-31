@@ -1,5 +1,5 @@
 {
-  "name": "jhsf-meeting-service",
+  "name": "node-service",
   "version": "1.0.0",
   "engines": {
     "node": ">=16.15.0",

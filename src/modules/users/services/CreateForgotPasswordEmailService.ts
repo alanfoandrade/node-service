@@ -39,7 +39,7 @@ class CreateForgotPasswordEmailService {
     );
 
     const messageData = {
-      subject: `[JHSF-MEETING] Recuperação de senha`,
+      subject: `[NODE-SERVICE] Recuperação de senha`,
       templateData: {
         file: forgotPasswordTemplate,
         variables: {
@@ -56,7 +56,7 @@ class CreateForgotPasswordEmailService {
 
     await this.queueProvider.addJob({
       jobData: messageData,
-      key: '[JHSF-MEETING]:ForgotPasswordEmail',
+      key: '[NODE-SERVICE]:ForgotPasswordEmail',
     });
   }
 }

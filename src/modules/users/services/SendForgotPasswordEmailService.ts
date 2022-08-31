@@ -6,7 +6,7 @@ import IMailProvider from '@shared/container/providers/MailProvider/models/IMail
 @injectable()
 class SendForgotPasswordEmailService {
   get key(): string {
-    return '[JHSF-BOOKINGS]:ForgotPasswordEmail';
+    return '[NODE-SERVICE]:ForgotPasswordEmail';
   }
 
   constructor(
